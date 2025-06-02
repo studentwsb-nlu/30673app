@@ -1,8 +1,8 @@
 {
-  "name": "30673app",
+  "name": "30673 App",
   "dockerComposeFile": "../docker-compose.yml",
   "service": "db",
-  "workspaceFolder": "/workspaces/longterm-trends-pl-poc",
+  "workspaceFolder": "/workspaces/30673app",
   "postCreateCommand": "./.devcontainer/postCreateCommand.sh",
   "customizations": {
     "vscode": {
