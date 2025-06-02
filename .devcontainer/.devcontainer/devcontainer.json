@@ -1,0 +1,16 @@
+{
+  "name": "30673app",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "db",
+  "workspaceFolder": "/workspaces/longterm-trends-pl-poc",
+  "postCreateCommand": "./.devcontainer/postCreateCommand.sh",
+  "customizations": {
+    "vscode": {
+      "extensions": ["dbaeumer.vscode-eslint"]
+    }
+  },
+  "forwardPorts": [3000],
+  "mounts": [
+    "source=pgdata,target=/var/lib/postgresql/data,type=volume"
+  ]
+}
