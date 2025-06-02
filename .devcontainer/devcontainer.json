@@ -1,16 +1,20 @@
 {
   "name": "30673 App",
-  "dockerComposeFile": "../docker-compose.yml",
-  "service": "db",
-  "workspaceFolder": "/workspaces/30673app",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:20", 
+  "features": {
+    "postgresql": {
+      "version": "15",
+      "initializeDatabase": true,
+      "databases": ["localdev"],
+      "user": "devuser",
+      "password": "devpass"
+    }
+  },
   "postCreateCommand": "./.devcontainer/postCreateCommand.sh",
   "customizations": {
     "vscode": {
       "extensions": ["dbaeumer.vscode-eslint"]
     }
   },
-  "forwardPorts": [3000],
-  "mounts": [
-    "source=pgdata,target=/var/lib/postgresql/data,type=volume"
-  ]
+  "forwardPorts": [3000, 5432]
 }
