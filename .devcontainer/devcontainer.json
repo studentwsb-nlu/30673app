@@ -1,15 +1,6 @@
 {
   "name": "30673 App",
-  "image": "mcr.microsoft.com/devcontainers/javascript-node:20", 
-  "features": {
-    "postgresql": {
-      "version": "15",
-      "initializeDatabase": true,
-      "databases": ["localdev"],
-      "user": "devuser",
-      "password": "devpass"
-    }
-  },
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:20",
   "postCreateCommand": "./.devcontainer/postCreateCommand.sh",
   "customizations": {
     "vscode": {

@@ -1,15 +1,21 @@
 #!/bin/bash
 set -e
 
-echo "🛠️ Running postCreate setup..."
+echo "==> Installing PostgreSQL..."
+sudo apt-get update -y
+sudo apt-get install -y postgresql postgresql-contrib
 
-# Wait a bit for PostgreSQL to initialize
-sleep 3
+echo "==> Starting PostgreSQL service..."
+sudo service postgresql start
 
-# Run schema and import scripts
+echo "==> Creating user and database..."
+sudo -u postgres psql -c "CREATE USER devuser WITH PASSWORD 'devpass';"
+sudo -u postgres psql -c "CREATE DATABASE localdev OWNER devuser;"
+
+echo "==> Running schema..."
 PGPASSWORD=devpass psql -h localhost -U devuser -d localdev -f db/schema.sql
 
-echo "📦 Importing CSV data..."
+echo "==> Importing sample data..."
 node import/importData.js
 
-echo "✅ Post-create setup complete."
+echo "==> Setup complete."
