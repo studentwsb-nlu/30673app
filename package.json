@@ -1,5 +1,5 @@
 {
-  "name": "longterm-trends-pl-poc",
+  "name": "30673-app",
   "version": "1.0.0",
   "main": "backend/index.js",
   "scripts": {

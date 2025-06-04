@@ -1,6 +1,6 @@
 # 30673 app
 
-Aplikacja do wizualizacji długoterminowych trendów ekonomicznych w Polsce, inspirowana LongTermTrends.net. Pozwala na analizę relacji złota, nieruchomości i indeksu WIG w czasie.
+Aplikacja do wizualizacji długoterminowych trendów ekonomicznych w Polsce, inspirowana 30673 app. Pozwala na analizę relacji złota, nieruchomości i indeksu WIG w czasie.
 
 ## Funkcjonalności
 - Wykres: Złoto do PLN
