@@ -1,44 +1,80 @@
-# LongTerm Trends PL - PoC
+# 30673 app
 
-A simple proof-of-concept version of LongTermTrends.net focused on Poland.
+Aplikacja do wizualizacji długoterminowych trendów ekonomicznych w Polsce, inspirowana LongTermTrends.net. Pozwala na analizę relacji złota, nieruchomości i indeksu WIG w czasie.
 
-## Charts
-- Gold to Real Estate
-- Gold in PLN
-- WIG to Real Estate
+## Funkcjonalności
+- Wykres: Złoto do PLN
+- Wykres: Złoto do nieruchomości
+- Wykres: WIG do nieruchomości
+- Import danych z plików CSV
+- API REST do pobierania danych
+- Prosty frontend z wykresami (Chart.js)
 
-## Stack
-- Node.js + Express (Backend)
-- PostgreSQL (RDS)
-- Chart.js (Frontend)
-- Hosted on EC2
+## Struktura projektu
+- `backend/` – serwer Node.js/Express, API, obsługa bazy danych PostgreSQL
+- `frontend/` – pliki HTML i JS do wizualizacji danych (Chart.js)
+- `data/` – pliki CSV z danymi historycznymi
+- `import/` – skrypt do importu danych z CSV do bazy
+- `db/` – plik SQL z definicją schematu bazy
 
-## Setup
+## Wymagania
+- Node.js
+- PostgreSQL (możesz użyć lokalnie lub przez Docker Compose)
+
+## Instalacja
 
 ```bash
 git clone <repo>
-cd longterm-trends-pl-poc
+cd 30673app
 npm install
 ```
 
-Create a `.env` file:
+### Konfiguracja bazy danych
+Możesz uruchomić lokalną bazę przez Docker Compose:
+
 ```bash
-DB_HOST=your-rds-endpoint
-DB_USER=your-db-user
-DB_PASS=your-db-password
-DB_NAME=your-db-name
+cd frontend
+docker-compose up -d
 ```
 
-## One-Time Import
+Lub skonfiguruj własną bazę PostgreSQL i utwórz plik `.env` w katalogu głównym:
+
+```
+DB_HOST=localhost
+DB_USER=devuser
+DB_PASS=devpass
+DB_NAME=localdev
+```
+
+Załaduj schemat bazy:
+
+```bash
+psql -h localhost -U devuser -d localdev -f db/schema.sql
+```
+
+## Import danych
 
 ```bash
 node import/importData.js
 ```
 
-## Run
+## Uruchomienie backendu
 
 ```bash
 npm start
 ```
 
-Visit `frontend/index.html` or set up NGINX to serve frontend and proxy `/api/*` to port 3000.
+Serwer API będzie dostępny na `http://localhost:3000`.
+
+## Frontend
+Otwórz plik `frontend/index.html` w przeglądarce. Wykresy pobierają dane z API backendu.
+
+Możesz też skonfigurować serwer www (np. NGINX), aby serwował frontend i proxy'ował `/api/*` do portu 3000.
+
+## API
+- `GET /api/gold-pln` – dane złota w PLN
+- `GET /api/gold-vs-realestate` – relacja złota do nieruchomości
+- `GET /api/wig-vs-realestate` – relacja WIG do nieruchomości
+
+## Licencja
+Projekt demonstracyjny do celów edukacyjnych.
